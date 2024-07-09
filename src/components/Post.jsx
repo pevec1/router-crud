@@ -10,7 +10,7 @@ const params = useParams();
 
     useEffect(() => {
       setTimeout(() => {
-      fetch("http://localhost:7070/posts/" + Number(params.id))
+      fetch("https://routercrudback.axareact.ru/posts/" + Number(params.id))
         .then((response) => response.json())
         .then((json) => setData(json));
     }, 1000);
