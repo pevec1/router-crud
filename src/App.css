@@ -100,7 +100,9 @@ h1,
   left: 0;
   background-color: rgb(193, 190, 190);
 }
-
+.header1{
+  text-align: center;
+}
 h1 {
   text-align: center;
 }

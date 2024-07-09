@@ -11,7 +11,7 @@ export default function Home(){
     }, []);
     return (
       <>
-        <header className="header">
+        <header className="header1">
           <Link to="/router-crud/posts/new">Create Post</Link>
           <div className="cross-icon">
             <div className="cross-icon-mark"></div>
