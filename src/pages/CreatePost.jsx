@@ -14,14 +14,15 @@ export default function СreatePost() {
   };
   const saveData =() =>{
     console.log(update);
-    fetch("http://localhost:7070/posts", {
+    fetch("https://routercrudback.axareact.ru/posts", {
       method: "POST",
       body: JSON.stringify(update),
       headers: {
         "Content-Type": "application/json",
       },
     })
-      .then((res) => {res.data;
+      .then((res) => {
+        res.data;
         console.log("response.status: ", res); // 👉️ 200
         if (res.status === 204) {
           window.location.href = "/router-crud/";

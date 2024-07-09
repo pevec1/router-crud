@@ -5,7 +5,7 @@ export default function Home(){
     const [data, setData] = useState([]);
 
     useEffect(() => {
-      fetch("http://localhost:7070/posts")
+      fetch("https://routercrudback.axareact.ru/posts")
         .then((response) => response.json())
         .then((json) => setData(json));
     }, []);

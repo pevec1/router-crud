@@ -29,7 +29,7 @@ let created = arr2.map(
 //console.log(arr2.map(([key, value]) => (Object.entries(value[1]).map(([key2, value2]) => (value2))[2]))[0]);
  
 const handleDelete = () => {
-  fetch("http://localhost:7070/posts/" + Number(params.id), {
+  fetch("https://routercrudback.axareact.ru/posts/" + Number(params.id), {
     method: "DELETE",
   });
   window.location.href = "/router-crud/";
