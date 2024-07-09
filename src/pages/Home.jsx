@@ -1,5 +1,5 @@
+import Posts from "../components/Posts"
 import { Link } from "react-router-dom";
-import Post from "../components/Post"
 import { useState, useEffect } from "react";
 export default function Home(){
     const [data, setData] = useState([]);
@@ -11,13 +11,22 @@ export default function Home(){
     }, []);
     return (
       <>
-      <Link to="/router-crud/posts/new">Create Post</Link>
+        <header className="header">
+          <Link to="/router-crud/posts/new">Create Post</Link>
+          <div className="cross-icon">
+            <div className="cross-icon-mark"></div>
+          </div>
+        </header>{" "}
         {data.map((post) => (
-          <Post
-            key={post.id}
-            content={post.content}
-            created={post.created}
-          />
+          <div key={post.id}>
+            <Link to={`/router-crud/posts/${post.id}`}>
+              <Posts
+                id={post.id}
+                content={post.content}
+                created={post.created}
+              />
+            </Link>
+          </div>
         ))}
       </>
     );

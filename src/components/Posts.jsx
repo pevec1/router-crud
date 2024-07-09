@@ -1,110 +1,49 @@
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import "../App.css";
 import "emoji-picker-element";
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-export default function СreatePost() {
-  const [state, setStates] = useState([]);
-
-  const [update, setUpdate] = useState();
-
-  const handleChange = (event) => {
-    console.log(event);
-    setUpdate({ ...update, "id": 0,[event.target.name]: event.target.value });
-    console.log("value:", update);
-  };
-  const saveData =() =>{
-    console.log(update);
-    fetch("http://localhost:7070/posts", {
-      method: "POST",
-      body: JSON.stringify(update),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {res.data;
-        console.log("response.status: ", res); // 👉️ 200
-        if (res.status === 204) {
-          window.location.href = "/router-crud/";
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-       
-  }
-  const onSubmit = (event) => {
-    event.preventDefault();
-    console.log(state, event, update);
-    setStates(state);
-    saveData();
-  }
-  
-  useEffect(() => {
-    
-  }, [update,state]);
-    
-  
+export default function Post({ id, content, created }) {
   return (
     <main className="post">
       <div className="wrapper">
         <section className="create-post">
-          <header className="header">
-            <h1>Create post</h1>
-            <div className="cross-icon">
-              <div className="cross-icon-mark"></div>
-            </div>
-          </header>
           <div className="post-header">
             <div className="profile-pic"></div>
             <div className="user-info">
               <div className="full-name">AXA</div>
               <div className="post-audience">
                 <div className="friends-icon"></div>
-                <span className="audience-text">Friends</span>
+                <span className="audience-text">Created: {created}</span>
                 <div className="drop-down"></div>
               </div>
             </div>
-            <div>
-              <Link to="/router-crud/">X</Link>
-            </div>
           </div>
-
           <div className="post-content">
-            <form method="post" onSubmit={onSubmit}>
-              <label>
-                Edit your post:
-                <textarea
-                  name="content"
-                  id="post-desc"
-                  defaultValue="Write something..."
-                  onChange={handleChange}
-                  rows={5}
-                  cols={30}
-                />
-              </label>
-              <div className="emoji-picker">
-                <emoji-picker className="light"></emoji-picker>
-                <i
-                  className="emoji"
-                  aria-label="Insert an emoji"
-                  role="img"
-                ></i>
+            <textarea
+              name="post-desc"
+              id="post-desc"
+              cols="30"
+              rows="5"
+              placeholder={content}
+            ></textarea>
+            <div className="emoji-picker">
+              <emoji-picker className="light"></emoji-picker>
+              <i className="emoji" aria-label="Insert an emoji" role="img"></i>
+            </div>
+            <div className="add-to-your-post">
+              <span className="add-to-post-text">Add to your post</span>
+              <div className="add-to-post-icons">
+                <div className="photo-video"></div>
+                <div className="tag-people"></div>
+                <div className="feeling-activity"></div>
+                <div className="check-in"></div>
+                <div className="gif"></div>
+                <div className="live-video"></div>
               </div>
-              <div className="add-to-your-post">
-                <span className="add-to-post-text">Add to your post</span>
-                <div className="add-to-post-icons">
-                  <div className="photo-video"></div>
-                  <div className="tag-people"></div>
-                  <div className="feeling-activity"></div>
-                  <div className="check-in"></div>
-                  <div className="gif"></div>
-                  <div className="live-video"></div>
-                </div>
-              </div>
-              <button className="post-btn" type="submit">
-                Post
-              </button>
-            </form>
+            </div>
+            <button className="post-btn" disabled>
+              Post
+            </button>
           </div>
         </section>
         <section className="post-audience-section">
