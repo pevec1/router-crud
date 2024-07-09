@@ -10,7 +10,7 @@ const params = useParams();
 
     useEffect(() => {
       setTimeout(() => {
-      fetch("https://routercrudback.axareact.ru/posts/" + Number(params.id))
+      fetch("https://routercrudback.axareact.ru/posts/" + params.id)
         .then((response) => response.json())
         .then((json) => setData(json));
     }, 1000);
@@ -29,7 +29,7 @@ let created = arr2.map(
 //console.log(arr2.map(([key, value]) => (Object.entries(value[1]).map(([key2, value2]) => (value2))[2]))[0]);
  
 const handleDelete = () => {
-  fetch("https://routercrudback.axareact.ru/posts/" + Number(params.id), {
+  fetch("https://routercrudback.axareact.ru/posts/" + params.id, {
     method: "DELETE",
   });
   window.location.href = "/router-crud/";
