@@ -31,8 +31,14 @@ let created = arr2.map(
 const handleDelete = () => {
   fetch("https://routercrudback.axareact.ru/posts/" + Number(params.id), {
     method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((res) => {
+    if (res.status === 204) {
+      window.location.href = "/router-crud/";
+    }
   });
-  window.location.href = "/router-crud/";
 };
 
 
