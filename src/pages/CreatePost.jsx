@@ -1,22 +1,13 @@
 import "../App.css";
 import "emoji-picker-element";
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 export default function СreatePost() {
-  const [state, setStates] = useState([]);
 
-  const [update, setUpdate] = useState();
-
-  const handleChange = (event) => {
-    console.log(event);
-    setUpdate({ ...update, "id": 0,[event.target.name]: event.target.value });
-    console.log("value:", update);
-  };
-  const saveData =() =>{
-    console.log(update);
+  const saveData =(data) =>{
+    console.log(data);
     fetch("https://routercrudback.axareact.ru/posts", {
       method: "POST",
-      body: JSON.stringify(update),
+      body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
       },
@@ -33,17 +24,13 @@ export default function СreatePost() {
       });
        
   }
-  const onSubmit = (event) => {
-    event.preventDefault();
-    console.log(state, event, update);
-    setStates(state);
-    saveData();
-  }
-  
-  useEffect(() => {
-    
-  }, [update,state]);
-    
+
+    const onSubmit = (event) => {
+      event.preventDefault();
+      console.log(event);
+      saveData({ id: 0, content: event.target[0].value });
+    };
+ 
   
   return (
     <main className="post">
@@ -78,7 +65,6 @@ export default function СreatePost() {
                   name="content"
                   id="post-desc"
                   defaultValue="Write something..."
-                  onChange={handleChange}
                   rows={5}
                   cols={30}
                 />
